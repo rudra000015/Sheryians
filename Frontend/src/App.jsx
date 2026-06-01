@@ -20,28 +20,13 @@ function App() {
     description: "dd-1"
   }])
 
-  function fetchNotes() {
-    axios.get("https://sheryians-g45q.onrender.com/notes")
-      .then(res => {
-        setNotes(res.data.notes)
-      })
-  }
   useEffect(() => {
-    fetchNotes()
-  }, [])
-  I
-
-  useEffect(() => {
-    axios.get("https://sheryians-g45q.onrender.com/notes").then((res) => {
+    axios.get("/notes").then((res) => {
       setNotes(res.data.notes);
     }).catch((err) => {
       console.error("Error fetching notes:", err);
     })
   }, [])
-
-
-
-
 
   async function handleform(e) {
     console.log("workng");
@@ -50,7 +35,7 @@ function App() {
     const { title, description } = e.target.elements;
     console.log(title.value, description.value);
 
-    await axios.post("https://sheryians-g45q.onrender.com/notes", {
+    await axios.post("/notes", {
       title: title.value,
       description: description.value
     }).then(res => {
@@ -58,21 +43,20 @@ function App() {
       // Add the new note to the state
       setNotes([...notes, res.data.note]);
       // Clear the form
+      e.target.reset();
     }).catch(err => {
       console.error("Error creating note:", err);
     })
   }
 
-  async function handledelete(noteId) {
-    await axios.delete("https://sheryians-g45q.onrender.com/notes/" + noteId).then(res => {
+  async function handledelete(noteId){
+   await axios.delete("/notes/"+noteId).then(res=>{
       console.log(res.data);
       // Remove the deleted note from the state
       setNotes(notes.filter(note => note._id !== noteId));
     }).catch(err => {
       console.error("Error deleting note:", err);
     })
-
-    fetchNotes();
   }
 
   return (
