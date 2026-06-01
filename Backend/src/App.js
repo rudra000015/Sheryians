@@ -77,7 +77,12 @@ const description = req.body.description;
 })
 
 app.use((req,res)=>{
-      res.sendFile(path.join(__dirname, "..", "public", "index.html"))
+      const filePath = path.join(__dirname, "..", "public", "index.html");
+      res.sendFile(filePath, (err) => {
+            if(err) {
+                  res.status(500).json({msg:"Public folder not found. Make sure to build and copy frontend files.", error: err.message})
+            }
+      })
 })
 
 
