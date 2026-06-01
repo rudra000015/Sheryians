@@ -20,8 +20,19 @@ function App() {
     description: "dd-1"
   }])
 
+  function fetchNotes() {
+    axios.get("https://sheryians-g45q.onrender.com/notes")
+      .then(res => {
+        setNotes(res.data.notes)
+      })
+  }
   useEffect(() => {
-    axios.get("http://localhost:3000/notes").then((res) => {
+    fetchNotes()
+  }, [])
+  I
+
+  useEffect(() => {
+    axios.get("https://sheryians-g45q.onrender.com/notes").then((res) => {
       setNotes(res.data.notes);
     }).catch((err) => {
       console.error("Error fetching notes:", err);
@@ -39,7 +50,7 @@ function App() {
     const { title, description } = e.target.elements;
     console.log(title.value, description.value);
 
-    await axios.post("http://localhost:3000/notes", {
+    await axios.post("https://sheryians-g45q.onrender.com/notes", {
       title: title.value,
       description: description.value
     }).then(res => {
@@ -52,14 +63,16 @@ function App() {
     })
   }
 
-  async function handledelete(noteId){
-   await axios.delete("http://localhost:3000/notes/"+noteId).then(res=>{
+  async function handledelete(noteId) {
+    await axios.delete("https://sheryians-g45q.onrender.com/notes/" + noteId).then(res => {
       console.log(res.data);
       // Remove the deleted note from the state
       setNotes(notes.filter(note => note._id !== noteId));
     }).catch(err => {
       console.error("Error deleting note:", err);
     })
+
+    fetchNotes();
   }
 
   return (
@@ -75,7 +88,7 @@ function App() {
           return <div className="note">
             <h1>{note.title}</h1>
             <p>{note.description}</p>
-            <button onClick={()=>{
+            <button onClick={() => {
               handledelete(note._id)
             }}>delete</button>
           </div>
