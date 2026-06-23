@@ -24,9 +24,14 @@ export const useAuth = () => {
 
     const handleGetMe = useCallback(async function handleGetMe() {
         setLoading(true)
-        const data = await getMe()
-        setUser(data.user)
-        setLoading(false)
+        try {
+            const data = await getMe()
+            setUser(data.user)
+        } catch {
+            setUser(null)
+        } finally {
+            setLoading(false)
+        }
     }, [setLoading, setUser])
 
     async function handleLogout() {
