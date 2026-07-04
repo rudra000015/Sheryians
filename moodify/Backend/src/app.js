@@ -1,6 +1,7 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const connectToDB = require("./config/database");
 
 
 const app = express();
@@ -9,8 +10,10 @@ app.use(cookieParser());
 
 const allowedOrigins = (process.env.CLIENT_URL || "http://localhost:5173")
     .split(",")
-    .map(origin => origin.trim())
+    .map(origin => origin.trim().replace(/\/$/, ""))
     .filter(Boolean);
+
+console.log("Allowed client origins:", allowedOrigins.join(", "));
 
 app.use(cors({
     origin(origin, callback) {
@@ -29,6 +32,17 @@ app.get("/", (req, res) => {
     })
 })
 
+app.use("/api", async (req, res, next) => {
+    try {
+        await connectToDB();
+        next();
+    } catch (err) {
+        res.status(503).json({
+            message: "Database connection failed"
+        });
+    }
+})
+
 /**
  * Routes
  */
@@ -37,5 +51,17 @@ const songRoutes = require("./routes/song.routes")
 
 app.use("/api/auth", authRoutes)
 app.use("/api/songs", songRoutes)
+
+app.use((err, req, res, next) => {
+    console.log(err);
+
+    if (res.headersSent) {
+        return next(err);
+    }
+
+    res.status(500).json({
+        message: "Internal server error"
+    });
+})
 
 module.exports = app

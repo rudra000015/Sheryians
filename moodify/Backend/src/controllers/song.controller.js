@@ -41,6 +41,12 @@ async function getSong(req, res) {
 
     const { mood } = req.query
 
+    if (!mood) {
+        return res.status(400).json({
+            message: "Mood is required"
+        })
+    }
+
     const song = await songModel.findOne({
         mood,
     })

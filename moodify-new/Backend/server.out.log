@@ -1,0 +1,66 @@
+[dotenv@17.3.1] injecting env (6) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+Server is running on port 3000
+Error: connect EACCES 13.206.142.153:12089
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+  errno: -4092,
+  code: 'EACCES',
+  syscall: 'connect',
+  address: '13.206.142.153',
+  port: 12089
+}
+Error: connect EACCES 13.206.142.153:12089
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+  errno: -4092,
+  code: 'EACCES',
+  syscall: 'connect',
+  address: '13.206.142.153',
+  port: 12089
+}
+Error: connect EACCES 13.206.142.153:12089
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+  errno: -4092,
+  code: 'EACCES',
+  syscall: 'connect',
+  address: '13.206.142.153',
+  port: 12089
+}
+Error: connect EACCES 13.206.142.153:12089
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+  errno: -4092,
+  code: 'EACCES',
+  syscall: 'connect',
+  address: '13.206.142.153',
+  port: 12089
+}
+Error: connect EACCES 13.206.142.153:12089
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+  errno: -4092,
+  code: 'EACCES',
+  syscall: 'connect',
+  address: '13.206.142.153',
+  port: 12089
+}
+Error: connect EACCES 13.206.142.153:12089
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+  errno: -4092,
+  code: 'EACCES',
+  syscall: 'connect',
+  address: '13.206.142.153',
+  port: 12089
+}
+Error: connect EACCES 13.206.142.153:12089
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+  errno: -4092,
+  code: 'EACCES',
+  syscall: 'connect',
+  address: '13.206.142.153',
+  port: 12089
+}
+Error: connect EACCES 13.206.142.153:12089
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+  errno: -4092,
+  code: 'EACCES',
+  syscall: 'connect',
+  address: '13.206.142.153',
+  port: 12089
+}
